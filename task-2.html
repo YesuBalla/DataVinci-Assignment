@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nested Checkbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .category {
+            margin-top: 10px;
+        }
+
+        .items {
+            margin-left: 20px;
+        }
+
+        label {
+            display: block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Nested Checkbox</h2>
+
+
+    <label>
+        <input type="checkbox" id="selectAll">
+        Select All
+    </label>
+
+
+    <div class="category">
+        <label>
+            <input type="checkbox" class="category-checkbox" data-category="fruits">
+            Fruits
+        </label>
+        <div class="items">
+            <label><input type="checkbox" class="fruit"> Apple</label>
+            <label><input type="checkbox" class="fruit"> Banana</label>
+            <label><input type="checkbox" class="fruit"> Orange</label>
+        </div>
+    </div>
+
+
+    <div class="category">
+        <label>
+            <input type="checkbox" class="category-checkbox" data-category="vegetables">
+            Vegetables
+        </label>
+        <div class="items">
+            <label><input type="checkbox" class="vegetable"> Carrot</label>
+            <label><input type="checkbox" class="vegetable"> Broccoli</label>
+            <label><input type="checkbox" class="vegetable"> Potato</label>
+        </div>
+    </div>
+
+
+    <script>
+        const selectAll = document.getElementById("selectAll");
+        const categoryCheckboxes = document.querySelectorAll(".category-checkbox");
+        const fruits = document.querySelectorAll(".fruit");
+        const vegetables = document.querySelectorAll(".vegetable");
+
+
+        selectAll.addEventListener("change", (e) => {
+            const checked = e.target.checked;
+            [...categoryCheckboxes, ...fruits, ...vegetables].forEach(cb => cb.checked = checked);
+        });
+
+
+        categoryCheckboxes.forEach(cb => {
+            cb.addEventListener("change", () => {
+                // cb.dataset.category === 'fruits' ? selectCategoryItems(fruits, cb.checked) : selectCategoryItems(vegetables, cb.checked);
+                updateSelectAll();
+            });
+
+        });
+
+        // function selectCategoryItems(items, checked) {
+        //     items.forEach(cb => cb.checked = checked);
+        // }
+
+
+        [...fruits, ...vegetables].forEach(cb => {
+            cb.addEventListener("change", () => {
+                updateCategory("fruits", fruits);
+                updateCategory("vegetables", vegetables);
+                updateSelectAll();
+            });
+        });
+
+
+        function updateCategory(category, items) {
+            const categoryBox = document.querySelector(`.category-checkbox[data-category="${category}"]`);
+            categoryBox.checked = [...items].every(i => i.checked);
+        }
+
+
+        function updateSelectAll() {
+            selectAll.checked =
+                [...fruits].every(f => f.checked) &&
+                [...vegetables].every(v => v.checked);
+        }
+    </script>
+</body>
+
+</html>
