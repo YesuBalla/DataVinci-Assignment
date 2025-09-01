@@ -69,7 +69,7 @@ export default function ProductGallery() {
       </Carousel>
 
       {/* Thumbnails */}
-      <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
+      <div className="d-flex flex-wrap justify-content-center gap-1 mt-3">
         {images.map((src, idx) => (
           <img
             key={idx}

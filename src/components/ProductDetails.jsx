@@ -56,7 +56,7 @@ export default function ProductPage({ product }) {
           <p>{product.description}</p>
 
           {/* Sponsors */}
-          <div className="d-flex flex-wrap gap-3 my-3">
+          <div className="d-flex justify-content-center flex-wrap gap-3 my-3">
             {product.sponsors.map((sponser, idx) => (
               <Image key={idx} src={sponser} className="p-2" />
             ))}
@@ -65,7 +65,7 @@ export default function ProductPage({ product }) {
           {/* Size options */}
           <h6 className="fw-light mt-4">Size (Select One)</h6>
           <p>{product.sizeOptions[0].label}</p>
-          <div className="d-flex flex-wrap gap-3">
+          <div className="d-flex justify-content-center flex-wrap gap-3">
             {product.sizeOptions.map((option, idx) => (
               <div key={idx} className="d-flex gap-3 my-2 sponsor-logo">
                 <Image src={option.image} />
@@ -76,7 +76,7 @@ export default function ProductPage({ product }) {
           {/* Payment options */}
           <h6 className="fw-light mt-4">Payment Options (Select One)</h6>
           <div className="gap-3 my-3 bg-light p-3 rounded-4">
-            <div className="d-flex justify-content-between">
+            <div className="d-flex flex-column flex-md-row justify-content-between">
               {product.paymentOptions.map((payOption, idx) => (
                 <Button
                   key={idx}
@@ -87,11 +87,12 @@ export default function ProductPage({ product }) {
                     alignItems: "center",
                     padding: "15px",
                     marginRight: "5px",
+                    marginBottom: "10px", // spacing for stacked layout
                   }}
                   className={
                     payOption.selected
-                      ? "text-light rounded-5"
-                      : "text-dark rounded-5"
+                      ? "text-light rounded-5 w-100 w-md-auto"
+                      : "text-dark rounded-5 w-100 w-md-auto"
                   }
                 >
                   <span style={{ width: "40%", lineHeight: "14px" }}>
@@ -110,20 +111,20 @@ export default function ProductPage({ product }) {
           </div>
 
           {/* Quantity selection */}
-          <h6 className="fw-light mt-4">Select Quantity</h6>
-          <div className="d-flex flex-row justify-content-between gap-3">
+          <h6 className="fw-light mt-4 mb-4">Select Quantity</h6>
+          <div className="d-flex flex-column align-items-center flex-md-row justify-content-md-between gap-3">
             <Button
               variant="warning"
-              className="text-light rounded-5 d-flex flex-row justify-content-around p-2"
-              style={{ width: "35%", cursor: "default" }}
+              className="text-light rounded-5 d-flex flex-row justify-content-around p-2 w-50 w-md-35"
+              style={{ cursor: "default" }}
             >
               <span style={{ cursor: "pointer" }}>−</span>
               <span style={{ textAlign: "center" }}>{1}</span>
               <span style={{ cursor: "pointer" }}>+</span>
             </Button>
+
             <Button
-              variant="dark rounded-5 p-2"
-              style={{ width: "60%" }}
+              variant="dark rounded-5 p-2 w-100 w-md-60"
             >
               ADD TO CART
             </Button>
