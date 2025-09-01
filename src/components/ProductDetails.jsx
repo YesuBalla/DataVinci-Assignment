@@ -240,7 +240,7 @@ export default function ProductPage({ product }) {
             </div>
 
             {/* UMF scale */}
-            <div className="py-3">
+            {/* <div className="py-3">
               <p className="mb-2">UMF™ SCALE</p>
               <div className="d-flex">
                 <div className="flex-grow-1 d-flex gap-2">
@@ -257,7 +257,28 @@ export default function ProductPage({ product }) {
                   ))}
                 </div>
               </div>
+            </div> */}
+
+            <div className="py-3">
+              <p className="mb-2">UMF™ SCALE</p>
+              <div className="d-flex">
+                <div className="flex-grow-1 d-flex gap-2">
+                  {scale.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="scale-wrapper flex-fill text-center"
+                    >
+                      <div className="label">{item.label}</div>
+                      <div
+                        className="scale-line"
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
+
 
             {/* Taste profile */}
             <div className="py-3">

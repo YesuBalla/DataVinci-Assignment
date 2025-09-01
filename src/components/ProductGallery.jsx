@@ -2,29 +2,30 @@ import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Modal from "react-bootstrap/Modal";
 
-import productImage from "../assets/productImage.png";
-import alb1 from "../assets/gallery/alb1.png";
-import alb2 from "../assets/gallery/alb2.png";
-import alb3 from "../assets/gallery/alb3.png";
-import alb4 from "../assets/gallery/alb4.png";
-import alb5 from "../assets/gallery/alb5.png";
-import alb6 from "../assets/gallery/alb6.png";
-import alb7 from "../assets/gallery/alb7.png";
+import productImage from "../assets/productImage.png"
+import Alb1 from "../assets/gallery/alb1.png"
+import Alb2 from "../assets/gallery/alb2.png"
+import Alb3 from "../assets/gallery/alb3.png"
+import Alb4 from "../assets/gallery/alb4.png"
+import Alb5 from "../assets/gallery/alb5.png"
+import Alb6 from "../assets/gallery/alb6.png"
+import Alb7 from "../assets/gallery/alb7.png"
+
 
 export default function ProductGallery() {
   const images = [
     productImage,
-    alb1,
-    alb2,
-    alb3,
-    alb4,
-    alb5,
-    alb6,
-    alb7,
+    Alb1,
+    Alb2,
+    Alb3,
+    Alb4,
+    Alb5,
+    Alb6,
+    Alb7,
   ];
 
   const [index, setIndex] = useState(0);
-  const [zoomedImg, setZoomedImg] = useState(null);
+  const [zoomedImg, setZoomedImg] = useState(null); // ✅ track zoom image
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
@@ -59,25 +60,24 @@ export default function ProductGallery() {
                   maxWidth: "100%",
                   maxHeight: "100%",
                   objectFit: "contain",
-                  cursor: "zoom-in",
+                  cursor: "zoom-in", // ✅ show zoom cursor
                 }}
-                onClick={() => setZoomedImg(src)}
+                onClick={() => setZoomedImg(src)} // ✅ open zoom modal
               />
             </div>
           </Carousel.Item>
         ))}
       </Carousel>
 
-      {/* Thumbnails */}
-      <div className="d-flex flex-wrap justify-content-center gap-1 mt-3">
-        {images.map((src, idx) => (
+      {/* Thumbnail Gallery */}
+      <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
+        {images.slice(1).map((src, idx) => (
           <img
             key={idx}
             src={src}
             alt={`Thumbnail ${idx + 1}`}
             className={`thumbnail-img img-thumbnail ${index === idx ? "border border-3 border-primary" : ""
               }`}
-            style={{ width: "80px", height: "80px", objectFit: "cover", cursor: "pointer" }}
             onClick={() => setIndex(idx)}
           />
         ))}
