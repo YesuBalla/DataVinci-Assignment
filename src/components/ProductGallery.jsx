@@ -2,16 +2,25 @@ import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Modal from "react-bootstrap/Modal";
 
+import productImage from "../assets/productImage.png";
+import alb1 from "../assets/gallery/alb1.png";
+import alb2 from "../assets/gallery/alb2.png";
+import alb3 from "../assets/gallery/alb3.png";
+import alb4 from "../assets/gallery/alb4.png";
+import alb5 from "../assets/gallery/alb5.png";
+import alb6 from "../assets/gallery/alb6.png";
+import alb7 from "../assets/gallery/alb7.png";
+
 export default function ProductGallery() {
   const images = [
-    "../src/assets/productImage.png",
-    "../src/assets/gallery/alb1.png",
-    "../src/assets/gallery/alb2.png",
-    "../src/assets/gallery/alb3.png",
-    "../src/assets/gallery/alb4.png",
-    "../src/assets/gallery/alb5.png",
-    "../src/assets/gallery/alb6.png",
-    "../src/assets/gallery/alb7.png",
+    productImage,
+    alb1,
+    alb2,
+    alb3,
+    alb4,
+    alb5,
+    alb6,
+    alb7,
   ];
 
   const [index, setIndex] = useState(0);
@@ -23,6 +32,7 @@ export default function ProductGallery() {
 
   return (
     <div className="text-center">
+      {/* Main Carousel */}
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
@@ -58,19 +68,22 @@ export default function ProductGallery() {
         ))}
       </Carousel>
 
+      {/* Thumbnails */}
       <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
-        {images.slice(1).map((src, idx) => (
+        {images.map((src, idx) => (
           <img
             key={idx}
             src={src}
             alt={`Thumbnail ${idx + 1}`}
             className={`thumbnail-img img-thumbnail ${index === idx ? "border border-3 border-primary" : ""
               }`}
+            style={{ width: "80px", height: "80px", objectFit: "cover", cursor: "pointer" }}
             onClick={() => setIndex(idx)}
           />
         ))}
       </div>
 
+      {/* Zoom Modal */}
       <Modal
         show={!!zoomedImg}
         onHide={() => setZoomedImg(null)}

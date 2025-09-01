@@ -7,13 +7,15 @@ import {
   Offcanvas,
 } from "react-bootstrap";
 import { FaUser, FaSearch, FaShoppingBag } from "react-icons/fa";
-import Logo from "../assets/NewZealandHoneyCo.png";
 import { HiMenuAlt2 } from "react-icons/hi";
+
+import Logo from "../assets/NewZealandHoneyCo.png";
 
 export default function NavBarComponent() {
   return (
     <Navbar expand="lg" className="py-3 bg-white" fixed="top">
       <Container fluid="lg">
+        {/* Left side menu + button */}
         <div className="d-flex align-items-center">
           <Navbar.Toggle
             aria-controls="offcanvasNavbar"
@@ -29,11 +31,13 @@ export default function NavBarComponent() {
           </Button>
         </div>
 
+        {/* Center nav with logo */}
         <Nav className="mx-auto d-none d-lg-flex align-items-center gap-5">
           <Nav.Link href="#">Shop</Nav.Link>
           <Nav.Link href="#">Explore</Nav.Link>
 
           <Navbar.Brand href="#">
+            {/* ✅ Logo imported correctly */}
             <img src={Logo} alt="NZHC Logo" height="70" />
           </Navbar.Brand>
 
@@ -42,6 +46,7 @@ export default function NavBarComponent() {
           <Nav.Link href="#">Contact</Nav.Link>
         </Nav>
 
+        {/* Right side icons */}
         <Nav className="d-flex flex-row align-items-center gap-2">
           <Nav.Link href="#">
             <FaUser size={18} />
@@ -62,6 +67,7 @@ export default function NavBarComponent() {
           </Nav.Link>
         </Nav>
 
+        {/* Offcanvas menu for mobile */}
         <Navbar.Offcanvas
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"

@@ -9,11 +9,12 @@ import {
   Form,
 } from "react-bootstrap";
 import { FaStar, FaHeart } from "react-icons/fa";
-
 import { GrPowerReset } from "react-icons/gr";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import InfoPopup from "../components/ScaleModal"
+import InfoPopup from "../components/ScaleModal";
 
+import colorlab from "../assets/colorlab.png";
+import afterpay from "../assets/afterpay.png";
 
 export default function ProductPage({ product }) {
   const scale = [
@@ -25,6 +26,7 @@ export default function ProductPage({ product }) {
     { key: "umf28", label: "UMF™ 28+", color: "#28a745" },
     { key: "umf30", label: "UMF™ 30+", color: "#007bff" },
   ];
+
   return (
     <Container className="py-2">
       <Row>
@@ -53,12 +55,14 @@ export default function ProductPage({ product }) {
 
           <p>{product.description}</p>
 
+          {/* Sponsors */}
           <div className="d-flex flex-wrap gap-3 my-3">
             {product.sponsors.map((sponser, idx) => (
               <Image key={idx} src={sponser} className="p-2" />
             ))}
           </div>
 
+          {/* Size options */}
           <h6 className="fw-light mt-4">Size (Select One)</h6>
           <p>{product.sizeOptions[0].label}</p>
           <div className="d-flex flex-wrap gap-3">
@@ -69,8 +73,8 @@ export default function ProductPage({ product }) {
             ))}
           </div>
 
+          {/* Payment options */}
           <h6 className="fw-light mt-4">Payment Options (Select One)</h6>
-
           <div className="gap-3 my-3 bg-light p-3 rounded-4">
             <div className="d-flex justify-content-between">
               {product.paymentOptions.map((payOption, idx) => (
@@ -82,7 +86,7 @@ export default function ProductPage({ product }) {
                     justifyContent: "space-around",
                     alignItems: "center",
                     padding: "15px",
-                    marginRight: "5px"
+                    marginRight: "5px",
                   }}
                   className={
                     payOption.selected
@@ -105,15 +109,13 @@ export default function ProductPage({ product }) {
             </p>
           </div>
 
+          {/* Quantity selection */}
           <h6 className="fw-light mt-4">Select Quantity</h6>
           <div className="d-flex flex-row justify-content-between gap-3">
             <Button
               variant="warning"
               className="text-light rounded-5 d-flex flex-row justify-content-around p-2"
-              style={{
-                width: "35%",
-                cursor: "default",
-              }}
+              style={{ width: "35%", cursor: "default" }}
             >
               <span style={{ cursor: "pointer" }}>−</span>
               <span style={{ textAlign: "center" }}>{1}</span>
@@ -121,20 +123,19 @@ export default function ProductPage({ product }) {
             </Button>
             <Button
               variant="dark rounded-5 p-2"
-              style={{
-                width: "60%",
-              }}
+              style={{ width: "60%" }}
             >
               ADD TO CART
             </Button>
           </div>
 
+          {/* Recommended bundle */}
           <div className="bg-light rounded-5 p-3 my-4">
             {product.recommenedProducts.map((recProduct, recIdx) => (
               <React.Fragment key={recIdx}>
                 <div className="d-flex justify-content-center align-items-center">
                   <SlArrowLeft size={25} />
-                  <h6 className="fs-5  text-center mx-3 mb-0">
+                  <h6 className="fs-5 text-center mx-3 mb-0">
                     {recProduct.name}
                   </h6>
                   <SlArrowRight size={25} />
@@ -171,9 +172,11 @@ export default function ProductPage({ product }) {
                         {`$${recProduct.originalPrice} ${recProduct.currency}`}
                       </p>
                       <p className="fw-bold px-1 fs-6">
-                        {`$${recProduct.discountedPrice} ${recProduct.currency}`}{" "}
+                        {`$${recProduct.discountedPrice} ${recProduct.currency}`}
                       </p>
-                      <span className="text-success fs-6 px-1">{`Save ${recProduct.discount}`}</span>
+                      <span className="text-success fs-6 px-1">
+                        {`Save ${recProduct.discount}`}
+                      </span>
                     </div>
                     <Button
                       variant="dark"
@@ -187,10 +190,12 @@ export default function ProductPage({ product }) {
               </React.Fragment>
             ))}
           </div>
+
+          {/* Rewards and delivery info */}
           <div className="my-4">
             <div className="d-flex align-items-center mb-3">
               <img
-                src="/src/assets/colorlab.png"
+                src={colorlab}
                 alt="logo"
                 width={30}
                 height={30}
@@ -226,26 +231,26 @@ export default function ProductPage({ product }) {
               <small>
                 or 4 interest-free payments of $13.97 with{" "}
                 <img
-                  src="src/assets/afterpay.png"
+                  src={afterpay}
                   alt="Afterpay"
                   style={{ height: "20px" }}
                 />
               </small>
             </div>
 
+            {/* UMF scale */}
             <div className="py-3">
               <p className="mb-2">UMF™ SCALE</p>
               <div className="d-flex">
                 <div className="flex-grow-1 d-flex gap-2">
                   {scale.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="scale-wrapper flex-fill text-center"
-                    >
-                      <div className="label">{item.label}</div>
+                    <div key={idx} className="flex-fill text-center">
+                      <div className="fw-bold small mb-1">{item.label}</div>
                       <div
-                        className="scale-line"
-                        style={{ backgroundColor: item.color }}
+                        style={{
+                          height: "2px",
+                          backgroundColor: item.color,
+                        }}
                       ></div>
                     </div>
                   ))}
@@ -253,6 +258,7 @@ export default function ProductPage({ product }) {
               </div>
             </div>
 
+            {/* Taste profile */}
             <div className="py-3">
               <p className="mb-2">TASTE PROFILE</p>
               <div className="d-flex justify-content-between align-items-center">
@@ -287,7 +293,6 @@ export default function ProductPage({ product }) {
           </div>
         </Col>
       </Row>
-
     </Container>
   );
 }

@@ -76,15 +76,15 @@
 
         categoryCheckboxes.forEach(cb => {
             cb.addEventListener("change", () => {
-                // cb.dataset.category === 'fruits' ? selectCategoryItems(fruits, cb.checked) : selectCategoryItems(vegetables, cb.checked);
+                cb.dataset.category === 'fruits' ? selectCategoryItems(fruits, cb.checked) : selectCategoryItems(vegetables, cb.checked);
                 updateSelectAll();
             });
 
         });
 
-        // function selectCategoryItems(items, checked) {
-        //     items.forEach(cb => cb.checked = checked);
-        // }
+        function selectCategoryItems(items, checked) {
+            items.forEach(cb => cb.checked = checked);
+        }
 
 
         [...fruits, ...vegetables].forEach(cb => {
